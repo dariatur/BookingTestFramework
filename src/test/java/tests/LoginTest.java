@@ -11,19 +11,16 @@ public class LoginTest extends BaseTest implements ITestConstants {
 
     @Test(description = "login with correct email")
     public void loginWithCorrectEmail(){
-        loginSteps.successfulLogin(userSuccess, LOGIN_URL);
-        Assert.assertEquals(VERIFY_YOUR_EMAIL_TEXT.getText(), "Verify your email address");
+        loginSteps.checkMessageAfterLogin(userSuccess, LOGIN_URL, SUCCESSFUL_LOGIN_TEXT);
     }
 
     @Test(description = "login with incorrect email")
     public void loginWithIncorrectEmail(){
-        loginSteps.login(userIncorrectFields, LOGIN_URL);
-        Assert.assertEquals((LoginPage.LOGIN_ERROR_MESSAGE).getText(), "Make sure the email address you entered is correct.");
+        loginSteps.checkErrorMessage(userIncorrectFields, LOGIN_URL, INCORRECT_EMAIL_ERROR);
     }
 
     @Test(description = "login with empty email field")
     public void loginWithEmptyEmail(){
-        loginSteps.login(userWithEmptyEmail, LOGIN_URL);
-        Assert.assertEquals((LoginPage.LOGIN_ERROR_MESSAGE).getText(), "Enter your email address");
+        loginSteps.checkErrorMessage(userWithEmptyEmail, LOGIN_URL, EMPTY_EMAIL_ERROR);
     }
 }

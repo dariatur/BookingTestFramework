@@ -11,12 +11,13 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     private static final SelenideElement SUBMIT_BUTTON = $x("//button[@type=\"submit\"]");
     public static final SelenideElement LOGIN_ERROR_MESSAGE = $(By.id("username-note"));
 
     public LoginPage openLoginPage(String url) {
         open(url);
+        acceptCookiesIfVisible();
         return this;
     }
 

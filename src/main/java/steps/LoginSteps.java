@@ -3,7 +3,6 @@ package steps;
 import entity.User;
 import io.qameta.allure.Step;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import pages.LoginPage;
 
 import static pages.VerificationEmailPage.VERIFY_YOUR_EMAIL_TEXT;

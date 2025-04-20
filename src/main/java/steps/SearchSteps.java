@@ -90,5 +90,4 @@ public class SearchSteps {
         doSearchWithoutCity(url, date, duration);
         Assert.assertEquals(ENTER_CITY_FIELD_ALERT.getText(), message);
     }
-
 }

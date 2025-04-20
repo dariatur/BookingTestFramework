@@ -7,7 +7,9 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class SearchResultsPage {
     private static SelenideElement MODAL_TEXT = $x("//div[text()='Sign in, save money']");
+    private static SelenideElement MODAL_CLOSE_BUTTON = $x("//button[@aria-label=\"Dismiss sign in information.\"]");
     private SelenideElement resultText = $x("//h1");
+
 
     public SearchResultsPage isOpened() {
         MODAL_TEXT.shouldBe(Condition.visible);
@@ -16,7 +18,7 @@ public class SearchResultsPage {
 
     public SearchResultsPage closeModalPage(){
         if(MODAL_TEXT.is(Condition.visible)){
-            $x("//button[@aria-label=\"Dismiss sign in information.\"]").click();
+            MODAL_CLOSE_BUTTON.click();
         }
         return this;
     }

@@ -3,20 +3,20 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import elements.Button;
+import elements.Input;
 import org.openqa.selenium.By;
-import utils.DateParser;
 
 import java.time.LocalDate;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class SearchPage extends BasePage {
-    public static SelenideElement CITY_INPUT = $(By.name("ss"));
     public static SelenideElement DATE_START_BUTTON = $x("//button[@data-testid='searchbox-dates-container']");
     public static String CHOSEN_DATE_START = "//*[@data-date='%s']";
     public static String CHOSEN_DATE_END = "//*[@data-date='%s']";
     public static SelenideElement FIND_BUTTON = $x("//button[@type='submit']");
     public static SelenideElement ENTER_CITY_FIELD_ALERT = $x("//*[@data-testid='searchbox-alert']/div");
+    public static SelenideElement ARROW_FOR_CHOOSING_MONTH = $x("//div[@data-testid='searchbox-datepicker-calendar']/button");
 
     public SearchPage openSearchPage(String url) {
         open(url);
@@ -25,7 +25,7 @@ public class SearchPage extends BasePage {
     }
 
     public SearchPage writeCity(String city) {
-        CITY_INPUT.setValue(city);
+        new Input().writeCity(city);
         return this;
     }
 
@@ -37,7 +37,7 @@ public class SearchPage extends BasePage {
             dateElem.click();
         } else {
             while(!dateElem.is(Condition.interactable)){
-                new Button().click($x("//div[@data-testid='searchbox-datepicker-calendar']/button"));
+                new Button().click(ARROW_FOR_CHOOSING_MONTH);
             }
             dateElem.click();
         }

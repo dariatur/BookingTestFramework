@@ -15,7 +15,7 @@ public class LoginSteps {
     }
 
     @Step("Login by email: {email}")
-    public void login(String email, String url) {
+    private void login(String email, String url) {
         loginPage
                 .openLoginPage(url)
                 .login(email)
@@ -23,7 +23,7 @@ public class LoginSteps {
     }
 
     @Step("Login by user: {user}")
-    public void successfulLogin(User user, String url) {
+    private void successfulLogin(User user, String url) {
         loginPage
                 .openLoginPage(url)
                 .login(user.getEmail())

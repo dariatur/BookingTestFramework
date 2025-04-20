@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.SearchPage;
+
 import steps.LoginSteps;
 import steps.SearchSteps;
 import utils.Preconditions;
@@ -46,8 +46,8 @@ public class BaseTest extends Preconditions {
         initPages();
     }
 
-//    @AfterMethod
-//    public void endTest() {
-//        getWebDriver().quit();
-//    }
+    @AfterMethod
+    public void endTest() {
+        getWebDriver().quit();
+    }
 }

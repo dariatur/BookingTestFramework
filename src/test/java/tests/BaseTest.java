@@ -46,8 +46,8 @@ public class BaseTest extends Preconditions {
         initPages();
     }
 
-    @AfterMethod
-    public void endTest() {
-        getWebDriver().quit();
-    }
+//    @AfterMethod
+//    public void endTest() {
+//        getWebDriver().quit();
+//    }
 }

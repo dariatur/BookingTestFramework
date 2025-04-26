@@ -11,6 +11,7 @@ import steps.LoginSteps;
 import steps.SearchSteps;
 import utils.Preconditions;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +45,7 @@ public class BaseTest extends Preconditions {
         Configuration.timeout = 15000;
         Configuration.headless = false;
         initPages();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
 //    @AfterMethod

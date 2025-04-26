@@ -30,7 +30,6 @@ public class LoginPage extends BasePage{
         isOpened();
         new Input("email").write(email);
         new Button().click(SUBMIT_BUTTON);
-        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return this;
     }
 

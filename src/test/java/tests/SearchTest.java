@@ -38,7 +38,6 @@ public class SearchTest extends BaseTest{
         searchSteps.checkMinLimitOfAdults(SEARCH_URL);
     }
 
-
     @Test(description = "Check max numbers of children")
     public void checkMaxLimitOfChildren(){
         searchSteps.checkMaxLimitOfChildren(SEARCH_URL);

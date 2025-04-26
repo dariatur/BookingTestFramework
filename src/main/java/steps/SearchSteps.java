@@ -93,50 +93,50 @@ public class SearchSteps {
 
     @Step("Check maximum number of adults")
     public void checkMaxLimitOfAdults(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .increaseAmountOfAdultsUntilLimit()
-                .getAmountOfAdults();
+                .increaseAmountOfAdultsUntilLimit();
+        int amount = searchPage.getAmountOfAdults();
 
         Assert.assertEquals(amount, 30);
     }
 
     @Step("Check minimum number of adults")
     public void checkMinLimitOfAdults(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .decreaseAmountOfAdultsUntilLimit()
-                .getAmountOfAdults();
+                .decreaseAmountOfAdultsUntilLimit();
+        int amount = searchPage.getAmountOfAdults();
 
         Assert.assertEquals(amount, 1);
     }
 
     @Step("Check maximum number of children")
     public void checkMaxLimitOfChildren(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .increaseAmountOfChildrenUntilLimit()
-                .getAmountOfChildren();
+                .increaseAmountOfChildrenUntilLimit();
+        int amount = searchPage.getAmountOfChildren();
         Assert.assertEquals(amount, 10);
     }
 
     @Step("Check minimum number of children")
     public void checkMinLimitOfChildren(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .decreaseAmountOfChildrenUntilLimit()
-                .getAmountOfChildren();
+                .decreaseAmountOfChildrenUntilLimit();
+        int amount = searchPage.getAmountOfChildren();
 
         Assert.assertEquals(amount, 0);
     }
 
     @Step("Check amount of 'select children age' input")
     public void checkAmountOfSelectChildrenAgeInputs(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
                 .increaseAmountOfChildrenUntilLimit()
-                .clickOnChooseAmountOfGuestsButton()
-                .getAmountOfChildren();
+                .clickOnChooseAmountOfGuestsButton();
+        int amount = searchPage.getAmountOfChildren();
 
         Assert.assertEquals(searchPage.getAmountOfSelectChildrenAgeInputs(), amount);
     }

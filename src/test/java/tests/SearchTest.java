@@ -9,7 +9,7 @@ public class SearchTest extends BaseTest{
 
     @Test(description = "Search with correct data")
     public void searchAndCheckFoundResultsPage(){
-        searchSteps.checkFoundResultsPage("Amsterdam", SEARCH_URL, "17.06", 6);
+        searchSteps.checkFoundResultsPage("Amsterdam", SEARCH_URL, "17.12", 6);
         //DateTime(2,5,2025)
     }
 

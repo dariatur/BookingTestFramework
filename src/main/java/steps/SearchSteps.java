@@ -22,7 +22,7 @@ public class SearchSteps {
     }
 
     @Step("Search by {city} and from {dateStart} to {dateEnd}")
-    private void doSearch(String city, String url, String dateStart, int duration){
+    public void doSearch(String city, String url, String dateStart, int duration){
         LocalDate date = DateParser.parseDate(dateStart);
         searchPage
                 .openSearchPage(url)

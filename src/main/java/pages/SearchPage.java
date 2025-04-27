@@ -19,7 +19,7 @@ public class SearchPage extends BasePage {
     public static String CHOSEN_DATE_END = "//*[@data-date='%s']";
     public static SelenideElement FIND_BUTTON = $x("//button[@type='submit']");
     public static SelenideElement ENTER_CITY_FIELD_ALERT = $x("//*[@data-testid='searchbox-alert']/div");
-    public static SelenideElement ARROW_FOR_CHOOSING_MONTH = $x("//div[@data-testid='searchbox-datepicker-calendar']/button");
+    public static SelenideElement ARROW_FOR_CHOOSING_MONTH = $x("//button[@aria-label='Next month']");
     public static SelenideElement CHOOSE_AMOUNT_OF_GUESTS_BUTTON = $x("//button[@data-testid='occupancy-config']");
     public static SelenideElement DECREASE_AMOUNT_OF_ADULTS_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Adults')]/parent::div/following-sibling::div/button[1]");
     public static SelenideElement INCREASE_AMOUNT_OF_ADULTS_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Adults')]/parent::div/following-sibling::div/button[2]");

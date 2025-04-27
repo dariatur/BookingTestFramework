@@ -7,7 +7,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import pages.SearchResultsPage;
 import steps.LoginSteps;
+import steps.SearchResultsSteps;
 import steps.SearchSteps;
 import utils.Preconditions;
 
@@ -21,10 +23,12 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 public class BaseTest extends Preconditions {
     protected LoginSteps loginSteps;
     protected SearchSteps searchSteps;
+    protected SearchResultsSteps searchResultsSteps;
 
     public void initPages() {
         loginSteps = new LoginSteps();
         searchSteps = new SearchSteps();
+        searchResultsSteps = new SearchResultsSteps();
     }
 
     @BeforeMethod
@@ -45,7 +49,7 @@ public class BaseTest extends Preconditions {
         Configuration.timeout = 15000;
         Configuration.headless = false;
         initPages();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
 //    @AfterMethod

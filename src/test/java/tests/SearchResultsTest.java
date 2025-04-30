@@ -6,33 +6,33 @@ import static utils.ITestConstants.SEARCH_URL;
 
 public class SearchResultsTest extends BaseTest{
 
-    @Test
+    @Test(description = "search for accommodation and then filter by min and max price")
     public void filterPrice(){
-        searchResultsSteps.filter(SEARCH_URL, "Paris", "16.07", 8, "100", "300");
+        searchResultsSteps.filterByPriceAndCheckResults(SEARCH_URL, "Paris", "16.07", 8, "200", "600");
     }
 
-    @Test
+    @Test(description = "search for accommodation and then filter by score")
     public void filterAndCheckByScore(){
-        searchResultsSteps.filterAndCheckByScore(SEARCH_URL, "Paris", "16.07", 8);
+        searchResultsSteps.filterAndCheckByScore(SEARCH_URL, "Paris", "16.07", 8, 9);
     }
 
-    @Test
+    @Test(description = "search for accommodation and then sort by ascending price")
     public void sortByLowestPrice(){
-        searchResultsSteps.filterByAscendingPrice(SEARCH_URL, "Paris", "16.07", 8);
+        searchResultsSteps.sortByAscendingPrice(SEARCH_URL, "Paris", "16.07", 8);
     }
 
-    @Test
+    @Test(description = "search for accommodation and then sort by descending price")
     public void sortByHighestPrice(){
-        searchResultsSteps.filterByDescendingPrice(SEARCH_URL, "Paris", "16.07", 8);
+        searchResultsSteps.sortByDescendingPrice(SEARCH_URL, "Paris", "16.07", 8);
     }
 
-    @Test
+    @Test(description = "search for accommodation and then sort by ascending rate")
     public void sortByLowestRate(){
-        searchResultsSteps.filterByAscendingRate(SEARCH_URL, "Paris", "16.07", 8);
+        searchResultsSteps.sortByAscendingRate(SEARCH_URL, "Paris", "16.07", 8);
     }
 
-    @Test
+    @Test(description = "search for accommodation and then sort by descending rate")
     public void sortByHighestRate(){
-        searchResultsSteps.filterByDescendingRate(SEARCH_URL, "Paris", "16.07", 8);
+        searchResultsSteps.sortByDescendingRate(SEARCH_URL, "Paris", "16.07", 8);
     }
 }

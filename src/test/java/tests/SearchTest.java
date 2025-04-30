@@ -10,7 +10,6 @@ public class SearchTest extends BaseTest{
     @Test(description = "Search with correct data")
     public void searchAndCheckFoundResultsPage(){
         searchSteps.checkFoundResultsPage("Amsterdam", SEARCH_URL, "17.12", 6);
-        //DateTime(2,5,2025)
     }
 
     @Test(description = "Search without entering city and dates")

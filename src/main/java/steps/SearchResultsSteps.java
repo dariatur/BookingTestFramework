@@ -21,8 +21,8 @@ public class SearchResultsSteps {
         searchPage = new SearchPage();
     }
 
-    @Step
-    public void filter(String url, String city, String dateStart, int duration, String minPrice, String maxPrice){
+    @Step("Search in {city}, on {dateStart} for {duration} days filter by min price {minPrice} and max price {maxPrice} and check results")
+    public void filterByPriceAndCheckResults(String url, String city, String dateStart, int duration, String minPrice, String maxPrice){
         LocalDate date = DateParser.parseDate(dateStart);
         searchPage
                 .openSearchPage(url)
@@ -34,10 +34,17 @@ public class SearchResultsSteps {
                 .closeModalPage()
                 .setPriceInputRangeMin(minPrice)
                 .setPriceInputRangeMax(maxPrice);
+
+        List<Integer> prices = searchResultsPage.getPrices();
+        int maxPriceForDuration = Integer.parseInt(maxPrice) * duration;
+        SoftAssert softAssert = new SoftAssert();
+        for(Integer price : prices){
+            softAssert.assertTrue(price <= maxPriceForDuration);
+        }
     }
 
-    @Step
-    public void filterAndCheckByScore(String url, String city, String dateStart, int duration){
+    @Step("Search in {city}, on {dateStart} for {duration} days and filter by score {score}")
+    public void filterAndCheckByScore(String url, String city, String dateStart, int duration, int score){
         LocalDate date = DateParser.parseDate(dateStart);
 
         searchPage
@@ -48,18 +55,17 @@ public class SearchResultsSteps {
                 .clickOnFindButton()
                 .isOpened()
                 .closeModalPage()
-                .clickOnCheckbox();
+                .clickOnReviewCheckbox(score);
         ElementsCollection scores = searchResultsPage.getReviewScores();
 
         SoftAssert softAssert = new SoftAssert();
-        for (SelenideElement elem:
-             scores) {
+        for (SelenideElement elem: scores) {
             softAssert.assertTrue(Double.parseDouble(elem.getText().split("Scored ")[0]) >= 8);
         }
     }
 
-    @Step
-    public void filterByAscendingPrice(String url, String city, String dateStart, int duration){
+    @Step("Search in {city}, on {dateStart} for {duration} days and sort by ascending price")
+    public void sortByAscendingPrice(String url, String city, String dateStart, int duration){
         LocalDate date = DateParser.parseDate(dateStart);
 
         searchPage
@@ -78,8 +84,8 @@ public class SearchResultsSteps {
         Assert.assertEquals(prices,sortedPrices);
     }
 
-    @Step
-    public void filterByDescendingPrice(String url, String city, String dateStart, int duration){
+    @Step("Search in {city}, on {dateStart} for {duration} days and sort by descending price")
+    public void sortByDescendingPrice(String url, String city, String dateStart, int duration){
         LocalDate date = DateParser.parseDate(dateStart);
 
         searchPage
@@ -98,8 +104,8 @@ public class SearchResultsSteps {
         Assert.assertEquals(prices,sortedPrices);
     }
 
-    @Step
-    public void filterByAscendingRate(String url, String city, String dateStart, int duration){
+    @Step("Search in {city}, on {dateStart} for {duration} days and sort by ascending rate")
+    public void sortByAscendingRate(String url, String city, String dateStart, int duration){
         LocalDate date = DateParser.parseDate(dateStart);
 
         searchPage
@@ -118,8 +124,8 @@ public class SearchResultsSteps {
         Assert.assertEquals(rates, sortedRates);
     }
 
-    @Step
-    public void filterByDescendingRate(String url, String city, String dateStart, int duration){
+    @Step("Search in {city}, on {dateStart} for {duration} days and sort by descending rate")
+    public void sortByDescendingRate(String url, String city, String dateStart, int duration){
         LocalDate date = DateParser.parseDate(dateStart);
 
         searchPage

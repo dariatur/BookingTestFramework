@@ -10,8 +10,6 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static pages.SearchPage.ENTER_CITY_FIELD_ALERT;
-
 public class SearchSteps {
     private SearchPage searchPage;
     private SearchResultsPage searchResultsPage;
@@ -73,7 +71,7 @@ public class SearchSteps {
     @Step("Check page after search without entering city and date")
     public void checkWithoutCityAndDate(String url, String message){
         doSearchWithoutCityAndDate(url);
-        Assert.assertEquals(ENTER_CITY_FIELD_ALERT.getText(), message);
+        Assert.assertEquals(searchPage.getEnterCityFieldAlertText(), message);
     }
 
     @Step("Check page after search without entering date")
@@ -88,7 +86,7 @@ public class SearchSteps {
     @Step("Check page after search without entering city")
     public void checkWithoutCity(String url, String date, int duration, String message){
         doSearchWithoutCity(url, date, duration);
-        Assert.assertEquals(ENTER_CITY_FIELD_ALERT.getText(), message);
+        Assert.assertEquals(searchPage.getEnterCityFieldAlertText(), message);
     }
 
     @Step("Check maximum number of adults")

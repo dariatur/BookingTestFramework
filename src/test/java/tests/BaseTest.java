@@ -1,25 +1,26 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import pages.SearchResultsPage;
+import org.testng.annotations.Listeners;
 import steps.LoginSteps;
 import steps.SearchResultsSteps;
 import steps.SearchSteps;
 import utils.Preconditions;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
+@Listeners({AllureTestNg.class})
 public class BaseTest extends Preconditions {
     protected LoginSteps loginSteps;
     protected SearchSteps searchSteps;

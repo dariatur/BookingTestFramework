@@ -47,13 +47,12 @@ public class BaseTest extends Preconditions {
         setWebDriver(driver);
 
         Configuration.timeout = 15000;
-        Configuration.headless = false;
+        Configuration.headless = true;
         initPages();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-//    @AfterMethod
-//    public void endTest() {
-//        getWebDriver().quit();
-//    }
+    @AfterMethod
+    public void endTest() {
+        getWebDriver().quit();
+    }
 }

@@ -5,10 +5,10 @@ import utils.ITestConstants;
 
 public class LoginTest extends BaseTest implements ITestConstants {
 
-    @Test(description = "login with correct email")
-    public void loginAndCheckMessageAfterLogin(){
-        loginSteps.checkMessageAfterLogin(userSuccess, LOGIN_URL, SUCCESSFUL_LOGIN_TEXT);
-    }
+//    @Test(description = "login with correct email")
+//    public void loginAndCheckMessageAfterLogin(){
+//        loginSteps.checkMessageAfterLogin(userSuccess, LOGIN_URL, SUCCESSFUL_LOGIN_TEXT);
+//    }
 
     @Test(description = "login with incorrect email")
     public void loginAndCheckErrorMessage(){

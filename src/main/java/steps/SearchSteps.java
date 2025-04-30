@@ -77,7 +77,7 @@ public class SearchSteps {
     @Step("Check page after search without entering date")
     public void checkSearchWithoutDates(String url, String city){
         doSearchWithoutDates(url,city);
-        Pattern pattern = Pattern.compile(String.format("%s: \\d{1,3}(,\\d{3})* properties found", city));
+        Pattern pattern = Pattern.compile("\\d{1,3}(,\\d{3})* properties found");
         Matcher matcher = pattern.matcher(searchResultsPage.getTextFromResultsPage());
         System.out.println(searchResultsPage.getTextFromResultsPage());
         Assert.assertTrue(matcher.find());

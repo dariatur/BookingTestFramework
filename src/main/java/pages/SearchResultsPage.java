@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import elements.Button;
+import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -17,9 +18,10 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
+@Data
 public class SearchResultsPage {
-    private static SelenideElement MODAL_TEXT = $x("//div[text()='Sign in, save money']");
-    private static SelenideElement MODAL_CLOSE_BUTTON = $x("//button[@aria-label=\"Dismiss sign in information.\"]");
+    private static final SelenideElement MODAL_TEXT = $x("//div[text()='Sign in, save money']");
+    private static final SelenideElement MODAL_CLOSE_BUTTON = $x("//button[@aria-label=\"Dismiss sign in information.\"]");
     private SelenideElement resultText = $x("//h1");
     private SelenideElement priceInputRangeMin = $x("//input[@aria-label='Min.']");
     private SelenideElement priceInputRangeMax = $x("//input[@aria-label='Max.']");
@@ -50,8 +52,13 @@ public class SearchResultsPage {
     }
 
     public String getTextFromResultsPage(){
-        log.info("Get text from results page {}", resultText.getText());
-        return resultText.getText();
+        try {
+            log.info("Get text from results page {}", resultText.getText());
+            return resultText.getText();
+        } catch (Exception e) {
+            log.info("Failed to get text from results page");
+            return "";
+        }
     }
 
     public SearchResultsPage setPriceInputRange(SelenideElement locator, SelenideElement locatorDot, String value){
@@ -109,10 +116,6 @@ public class SearchResultsPage {
         }
 
         return this;
-    }
-
-    public ElementsCollection getReviewScores(){
-        return reviewScores;
     }
 
     public List<Integer> getPrices(){

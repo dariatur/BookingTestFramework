@@ -16,19 +16,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
 public class SearchPage extends BasePage {
-    private static SelenideElement DATE_START_BUTTON = $x("//button[@data-testid='searchbox-dates-container']");
-    private static String CHOSEN_DATE_START = "//*[@data-date='%s']";
-    private static String CHOSEN_DATE_END = "//*[@data-date='%s']";
-    private static SelenideElement FIND_BUTTON = $x("//button[@type='submit']");
-    private static SelenideElement ARROW_FOR_CHOOSING_MONTH = $x("//button[@aria-label='Next month']");
-    private static SelenideElement CHOOSE_AMOUNT_OF_GUESTS_BUTTON = $x("//button[@data-testid='occupancy-config']");
-    private static SelenideElement DECREASE_AMOUNT_OF_ADULTS_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Adults')]/parent::div/following-sibling::div/button[1]");
-    private static SelenideElement INCREASE_AMOUNT_OF_ADULTS_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Adults')]/parent::div/following-sibling::div/button[2]");
-    private static SelenideElement DECREASE_AMOUNT_OF_CHILDREN_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Children')]/parent::div/following-sibling::div/button[1]");
-    private static SelenideElement INCREASE_AMOUNT_OF_CHILDREN_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Children')]/parent::div/following-sibling::div/button[2]");
-    private static SelenideElement AMOUNT_OF_GUESTS = $x("//button[@data-testid='occupancy-config']/span");
-    private static ElementsCollection SELECT_CHILDREN_AGE_INPUTS = $$(By.xpath("//select[@name='age']"));
-    private static SelenideElement ENTER_CITY_FIELD_ALERT = $x("//*[@data-testid='searchbox-alert']/div");
+    private static final SelenideElement DATE_START_BUTTON = $x("//button[@data-testid='searchbox-dates-container']");
+    private static final String CHOSEN_DATE_START = "//*[@data-date='%s']";
+    private static final String CHOSEN_DATE_END = "//*[@data-date='%s']";
+    private static final SelenideElement FIND_BUTTON = $x("//button[@type='submit']");
+    private static final SelenideElement ARROW_FOR_CHOOSING_MONTH = $x("//button[@aria-label='Next month']");
+    private static final SelenideElement CHOOSE_AMOUNT_OF_GUESTS_BUTTON = $x("//button[@data-testid='occupancy-config']");
+    private static final SelenideElement DECREASE_AMOUNT_OF_ADULTS_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Adults')]/parent::div/following-sibling::div/button[1]");
+    private static final SelenideElement INCREASE_AMOUNT_OF_ADULTS_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Adults')]/parent::div/following-sibling::div/button[2]");
+    private static final SelenideElement DECREASE_AMOUNT_OF_CHILDREN_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Children')]/parent::div/following-sibling::div/button[1]");
+    private static final SelenideElement INCREASE_AMOUNT_OF_CHILDREN_BUTTON = $x("//div[@data-testid='occupancy-popup']//label[contains(text(), 'Children')]/parent::div/following-sibling::div/button[2]");
+    private static final SelenideElement AMOUNT_OF_GUESTS = $x("//button[@data-testid='occupancy-config']/span");
+    private static final ElementsCollection SELECT_CHILDREN_AGE_INPUTS = $$(By.xpath("//select[@name='age']"));
+    private static final SelenideElement ENTER_CITY_FIELD_ALERT = $x("//*[@data-testid='searchbox-alert']/div");
 
     public SearchPage openSearchPage(String url) {
         log.info("Open url {}", url);
@@ -145,7 +145,13 @@ public class SearchPage extends BasePage {
     }
 
     public String getEnterCityFieldAlertText(){
-        log.info("Error message in 'city' field: {}", ENTER_CITY_FIELD_ALERT.getText());
-        return ENTER_CITY_FIELD_ALERT.getText();
+        try {
+            log.info("Error message in 'city' field: {}", ENTER_CITY_FIELD_ALERT.getText());
+            return ENTER_CITY_FIELD_ALERT.getText();
+        } catch (Exception e) {
+            log.info("Failed to get error message in 'city' field");
+            return "";
+        }
+
     }
 }

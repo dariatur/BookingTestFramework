@@ -42,6 +42,12 @@ public class LoginPage extends BasePage{
     }
 
     public String getLoginErrorMessage(){
-        return LOGIN_ERROR_MESSAGE.getText();
+        try {
+            log.info("Get login error message {}", LOGIN_ERROR_MESSAGE.getText());
+            return LOGIN_ERROR_MESSAGE.getText();
+        } catch (Exception e) {
+            log.info("Failed to get login error message");
+            return "";
+        }
     }
 }

@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 @Log4j2
 public class VerificationEmailPage extends BasePage{
-    private static SelenideElement VERIFY_YOUR_EMAIL_TEXT = $x("//h1[text()=\"Verify your email address\"]");
+    private static final SelenideElement VERIFY_YOUR_EMAIL_TEXT = $x("//h1[text()=\"Verify your email address\"]");
 
     public VerificationEmailPage isOpened(){
         acceptCookiesIfVisible();

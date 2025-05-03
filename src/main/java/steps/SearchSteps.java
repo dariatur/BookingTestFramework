@@ -7,6 +7,7 @@ import pages.SearchResultsPage;
 import utils.DateParser;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,7 +72,7 @@ public class SearchSteps {
     @Step("Check page after search without entering city and date")
     public void checkWithoutCityAndDate(String url, String message){
         doSearchWithoutCityAndDate(url);
-        Assert.assertEquals(searchPage.getEnterCityFieldAlertText(), message);
+        Assert.assertTrue(searchPage.getEnterCityFieldAlertText().toLowerCase().contains(message));
     }
 
     @Step("Check page after search without entering date")

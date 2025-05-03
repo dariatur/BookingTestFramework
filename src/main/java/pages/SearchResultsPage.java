@@ -46,7 +46,7 @@ public class SearchResultsPage {
 
     public SearchResultsPage closeModalPage(){
         if (MODAL_TEXT.exists()) {
-            MODAL_TEXT.shouldBe(Condition.visible, Duration.ofSeconds(3));
+            MODAL_TEXT.shouldBe(Condition.visible, Duration.ofSeconds(15));
             log.info("Close modal page");
             MODAL_CLOSE_BUTTON.click();
         }

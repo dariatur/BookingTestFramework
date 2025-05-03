@@ -24,7 +24,6 @@ public class Button {
         try {
             element.click();
         } catch (ElementClickInterceptedException e) {
-            // fallback
             log.warn("Click intercepted, trying JS click...");
             executeJavaScript("arguments[0].click();", element);
         }

@@ -17,14 +17,16 @@ public class BasePage {
         log.info("Accept cookies if visible");
         SelenideElement banner = $(By.id("onetrust-banner-sdk"));
         try {
-            if (banner.should(appear, Duration.ofSeconds(5)).isDisplayed()) {
+            banner.should(Condition.appear, Duration.ofSeconds(10));
+
+            if (banner.is(Condition.visible)) {
                 SelenideElement acceptBtn = banner.$(By.id("onetrust-accept-btn-handler"));
-                acceptBtn.shouldBe(visible, Duration.ofSeconds(3));
+                acceptBtn.shouldBe(Condition.visible, Duration.ofSeconds(5));
                 acceptBtn.click();
                 log.info("Cookie banner accepted");
             }
         } catch (Exception e) {
-            log.warn("Cookie banner not found or already dismissed");
+            log.warn("Cookie banner not found or already dismissed, continuing...");
         }
     }
 }

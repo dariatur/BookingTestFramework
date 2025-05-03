@@ -16,11 +16,12 @@ public class Button {
     }
 
     public void click(SelenideElement element) {
-        element.shouldBe(interactable, Duration.ofSeconds(10))
-                .scrollIntoView("{behavior: 'auto', block: 'center'}");
+        element.shouldBe(visible, Duration.ofSeconds(10));
+        element.shouldBe(enabled, Duration.ofSeconds(10));
+        element.scrollIntoView("{behavior: 'auto', block: 'center'}");
 
         try {
-            element.click();
+            element.shouldBe(interactable, Duration.ofSeconds(5)).click();
         } catch (ElementClickInterceptedException e) {
             log.warn("Click intercepted, trying JS click...");
             executeJavaScript("arguments[0].click();", element);

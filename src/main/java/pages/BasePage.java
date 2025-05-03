@@ -17,8 +17,6 @@ public class BasePage {
         log.info("Accept cookies if visible");
         SelenideElement banner = $(By.id("onetrust-banner-sdk"));
         try {
-            banner.should(Condition.appear, Duration.ofSeconds(10));
-
             if (banner.is(Condition.visible)) {
                 SelenideElement acceptBtn = banner.$(By.id("onetrust-accept-btn-handler"));
                 acceptBtn.shouldBe(Condition.visible, Duration.ofSeconds(5));

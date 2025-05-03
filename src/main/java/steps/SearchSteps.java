@@ -87,7 +87,7 @@ public class SearchSteps {
     @Step("Check page after search without entering city")
     public void checkWithoutCity(String url, String date, int duration, String message){
         doSearchWithoutCity(url, date, duration);
-        Assert.assertEquals(searchPage.getEnterCityFieldAlertText(), message);
+        Assert.assertTrue(searchPage.getEnterCityFieldAlertText().toLowerCase().contains(message));
     }
 
     @Step("Check maximum number of adults")

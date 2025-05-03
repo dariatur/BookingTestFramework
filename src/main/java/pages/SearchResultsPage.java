@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.*;
 @Log4j2
 @Data
 public class SearchResultsPage {
-    private static final SelenideElement MODAL_TEXT = $x("//div[text()='Sign in, save money']");
+    private static final SelenideElement MODAL_TEXT = $x("//div[text()='Sign in, save money']").shouldBe(Condition.visible);
     private static final SelenideElement MODAL_CLOSE_BUTTON = $x("//button[@aria-label=\"Dismiss sign in information.\"]");
     private SelenideElement resultText = $x("//h1");
     private SelenideElement priceInputRangeMin = $x("//input[@aria-label='Min.']");

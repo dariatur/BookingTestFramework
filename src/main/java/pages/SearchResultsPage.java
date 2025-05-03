@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -44,7 +45,8 @@ public class SearchResultsPage {
     }
 
     public SearchResultsPage closeModalPage(){
-        if(MODAL_TEXT.is(Condition.visible)){
+        if (MODAL_TEXT.exists()) {
+            MODAL_TEXT.shouldBe(Condition.visible, Duration.ofSeconds(3));
             log.info("Close modal page");
             MODAL_CLOSE_BUTTON.click();
         }

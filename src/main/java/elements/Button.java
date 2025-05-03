@@ -7,8 +7,7 @@ import org.openqa.selenium.ElementClickInterceptedException;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 @Log4j2
@@ -17,8 +16,7 @@ public class Button {
     }
 
     public void click(SelenideElement element) {
-        element.shouldBe(visible, Duration.ofSeconds(10))
-                .shouldBe(enabled)
+        element.shouldBe(interactable, Duration.ofSeconds(10))
                 .scrollIntoView("{behavior: 'auto', block: 'center'}");
 
         try {

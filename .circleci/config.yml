@@ -19,7 +19,7 @@ jobs:
           command: google-chrome --version
       - run:
           name: Run specific test class
-          command: mvn clean test -Dtest=SearchResultsTest
+          command: mvn clean test -Dtest=SearchTest
       - run:
           name: Generate allure report
           command: mvn allure:report

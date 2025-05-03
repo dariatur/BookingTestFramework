@@ -48,7 +48,7 @@ public class BaseTest extends Preconditions {
         setWebDriver(driver);
 
         Configuration.timeout = 15000;
-        Configuration.headless = false;
+        Configuration.headless = true;
         initPages();
     }
 

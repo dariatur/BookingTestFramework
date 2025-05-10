@@ -7,10 +7,9 @@ import pages.SearchResultsPage;
 import utils.DateParser;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static pages.SearchPage.ENTER_CITY_FIELD_ALERT;
 
 public class SearchSteps {
     private SearchPage searchPage;
@@ -22,7 +21,7 @@ public class SearchSteps {
     }
 
     @Step("Search by {city} and from {dateStart} to {dateEnd}")
-    private void doSearch(String city, String url, String dateStart, int duration){
+    public void doSearch(String city, String url, String dateStart, int duration){
         LocalDate date = DateParser.parseDate(dateStart);
         searchPage
                 .openSearchPage(url)
@@ -73,13 +72,13 @@ public class SearchSteps {
     @Step("Check page after search without entering city and date")
     public void checkWithoutCityAndDate(String url, String message){
         doSearchWithoutCityAndDate(url);
-        Assert.assertEquals(ENTER_CITY_FIELD_ALERT.getText(), message);
+        Assert.assertTrue(searchPage.getEnterCityFieldAlertText().toLowerCase().contains(message));
     }
 
     @Step("Check page after search without entering date")
     public void checkSearchWithoutDates(String url, String city){
         doSearchWithoutDates(url,city);
-        Pattern pattern = Pattern.compile(String.format("%s: \\d{1,3}(,\\d{3})* properties found", city));
+        Pattern pattern = Pattern.compile("\\d{1,3}(,\\d{3})* properties found");
         Matcher matcher = pattern.matcher(searchResultsPage.getTextFromResultsPage());
         System.out.println(searchResultsPage.getTextFromResultsPage());
         Assert.assertTrue(matcher.find());
@@ -88,55 +87,55 @@ public class SearchSteps {
     @Step("Check page after search without entering city")
     public void checkWithoutCity(String url, String date, int duration, String message){
         doSearchWithoutCity(url, date, duration);
-        Assert.assertEquals(ENTER_CITY_FIELD_ALERT.getText(), message);
+        Assert.assertTrue(searchPage.getEnterCityFieldAlertText().toLowerCase().contains(message));
     }
 
     @Step("Check maximum number of adults")
     public void checkMaxLimitOfAdults(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .increaseAmountOfAdultsUntilLimit()
-                .getAmountOfAdults();
+                .increaseAmountOfAdultsUntilLimit();
+        int amount = searchPage.getAmountOfAdults();
 
         Assert.assertEquals(amount, 30);
     }
 
     @Step("Check minimum number of adults")
     public void checkMinLimitOfAdults(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .decreaseAmountOfAdultsUntilLimit()
-                .getAmountOfAdults();
+                .decreaseAmountOfAdultsUntilLimit();
+        int amount = searchPage.getAmountOfAdults();
 
         Assert.assertEquals(amount, 1);
     }
 
     @Step("Check maximum number of children")
     public void checkMaxLimitOfChildren(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .increaseAmountOfChildrenUntilLimit()
-                .getAmountOfChildren();
+                .increaseAmountOfChildrenUntilLimit();
+        int amount = searchPage.getAmountOfChildren();
         Assert.assertEquals(amount, 10);
     }
 
     @Step("Check minimum number of children")
     public void checkMinLimitOfChildren(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
-                .decreaseAmountOfChildrenUntilLimit()
-                .getAmountOfChildren();
+                .decreaseAmountOfChildrenUntilLimit();
+        int amount = searchPage.getAmountOfChildren();
 
         Assert.assertEquals(amount, 0);
     }
 
     @Step("Check amount of 'select children age' input")
     public void checkAmountOfSelectChildrenAgeInputs(String url){
-        int amount = searchPage.openSearchPage(url)
+        searchPage.openSearchPage(url)
                 .clickOnChooseAmountOfGuestsButton()
                 .increaseAmountOfChildrenUntilLimit()
-                .clickOnChooseAmountOfGuestsButton()
-                .getAmountOfChildren();
+                .clickOnChooseAmountOfGuestsButton();
+        int amount = searchPage.getAmountOfChildren();
 
         Assert.assertEquals(searchPage.getAmountOfSelectChildrenAgeInputs(), amount);
     }

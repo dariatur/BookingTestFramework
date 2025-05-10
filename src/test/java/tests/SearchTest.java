@@ -9,8 +9,7 @@ public class SearchTest extends BaseTest{
 
     @Test(description = "Search with correct data")
     public void searchAndCheckFoundResultsPage(){
-        searchSteps.checkFoundResultsPage("Amsterdam", SEARCH_URL, "17.06", 6);
-        //DateTime(2,5,2025)
+        searchSteps.checkFoundResultsPage("Amsterdam", SEARCH_URL, "17.12", 6);
     }
 
     @Test(description = "Search without entering city and dates")
@@ -37,7 +36,6 @@ public class SearchTest extends BaseTest{
     public void checkMinLimitOfAdults(){
         searchSteps.checkMinLimitOfAdults(SEARCH_URL);
     }
-
 
     @Test(description = "Check max numbers of children")
     public void checkMaxLimitOfChildren(){
